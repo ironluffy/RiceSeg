@@ -2,6 +2,7 @@ import os
 import cv2
 import glob
 import tqdm
+import random
 import shutil
 import zipfile
 import argparse
@@ -91,10 +92,8 @@ def rearrange_unzipped(dir_path, data_path):
         img_file_names = []
         for img_file in img_file_list:
             img_file_names.append(img_file[:-4])
-        try:
-            assert img_file_names == ann_file_names
-        except:
-            print(channel)
+        
+        assert img_file_names == ann_file_names
         # ic(code_list)
     print("Sanity check is done!")
 
@@ -145,7 +144,11 @@ def ann_rgb2cls(data_path, replace=False):
 
     os.makedirs(cls_ann_dir, exist_ok=True)
     file_list = os.listdir(rgb_ann_dir)
-    file_list.remove('.ipynb_checkpoints')
+    try:
+        file_list.remove('.ipynb_checkpoints')
+    except:
+        pass
+
     for file in tqdm.tqdm(file_list):
         result = mapping_without_blur(os.path.join(rgb_ann_dir, file))
         cv2.imwrite(os.path.join(cls_ann_dir, file), result)
@@ -154,11 +157,12 @@ def ann_rgb2cls(data_path, replace=False):
 
 def img_compose(data_path, channels=["E", "N", "G"], mode='chw_minmax', replace=False):
     img_dir = os.path.join(data_path, "img")
-    output_dir = os.path.join(data_path, ''.join(channels))
+    img_conf_name = ''.join(channels)+'_'+mode
+    output_dir = os.path.join(data_path, img_conf_name)
     if not replace:
         if os.path.exists(output_dir):
             print(f"using existing img_dir: {os.path.abspath(output_dir)}")
-            return
+            return img_conf_name
     os.makedirs(output_dir, exist_ok=True)
 
     if mode == 'chw_minmax':
@@ -198,18 +202,68 @@ def img_compose(data_path, channels=["E", "N", "G"], mode='chw_minmax', replace=
             cv2.imwrite(os.path.join(output_dir, file[:-3]+'png'), img*255)
     else:
         raise NotImplementedError
+
+    return img_conf_name
         
+
+def ann_split(ann_dir, output_dir, split_ratio=[0.8, 0.1, 0.1], replace=False):
+    if not replace:
+        if os.path.exists(output_dir):
+            print(f"using existing splited ann_dir: {os.path.abspath(output_dir)}")
+            return
+    os.makedirs(output_dir, exist_ok=True)
+    ann_list = os.listdir(ann_dir)
+    try:
+        ann_list.remove('.ipynb_checkpoints')
+    except:
+        pass
+
+    random.shuffle(ann_list)
+    split_names = ['train', 'val', 'test']
+    start = 0
+    for i, ratio in enumerate(split_ratio):
+        end = start + int(len(ann_list)*ratio)
+        split_list = ann_list[start:end]
+        with open(os.path.join(output_dir, '..', split_names[i]+'.txt'), 'w') as f:
+            f.write('\n'.join(split_list))
+        split_dir = os.path.join(output_dir, split_names[i])
+        os.makedirs(split_dir, exist_ok=True)
+        for file in split_list:
+            shutil.copy(os.path.join(ann_dir, file), os.path.join(split_dir, file))
+        start = end
+    print("Splitting annotation images is done!")
+
+def img_split(data_dir, split_dir, img_conf_name, replace=False):
+    img_dir = os.path.join(data_dir, img_conf_name)
+    output_dir = os.path.join(split_dir, img_conf_name)
+    split_names = ['train', 'val', 'test']
+
+    if not replace:
+        if os.path.exists(output_dir):
+            print(f"using existing img_dir: {os.path.abspath(output_dir)}")
+            return
+    os.makedirs(output_dir, exist_ok=True)
+
+    for split in split_names:
+        split_img_dir = os.path.join(output_dir, split)
+        os.makedirs(split_img_dir, exist_ok=True)
+        with open(os.path.join(split_dir, split+'.txt'), 'r') as f:
+            split_list = f.read().splitlines()
+        for file in split_list:
+            shutil.copy(os.path.join(img_dir, file), os.path.join(split_img_dir, file))
 
 # TODO: rgb ann to class_id
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="Rice data processing", description="What the program does"
     )
-    parser.add_argument("--src", type=str, default="./rice_raw_data")
-    parser.add_argument("--dst", type=str, default="./rice_unzipped")
+    parser.add_argument("--src", type=str, default="../rice_raw_data")
+    parser.add_argument("--dst", type=str, default="../rice_unzipped")
     parser.add_argument("--skip_unzip", action="store_true")
     args = parser.parse_args()
 
+
+    map(lambda x: shutil.rmtree(x), glob.glob(os.path.join('../data', ".ipynb_checkpoints"), recursive=True))
     # unzip
     if not args.skip_unzip:
         if not os.path.exists(os.path.join(args.dst)):
@@ -227,13 +281,14 @@ if __name__ == "__main__":
         print("skip unzip")
 
     # rearrange_unzipped
-    rearrange_unzipped(args.dst, './data')
+    rearrange_unzipped(args.dst, '../data')
 
     # remove .ipynb_checkpoints
-    map(lambda x: shutil.rmtree(x), glob.glob(os.path.join('./data', "**", ".ipynb_checkpoints"), recursive=True))
 
     # compose images
-    img_compose('./data', channels=["G", "N", "E"])
-    ann_rgb2cls('./data', replace=True)
+    img_conf_name = img_compose('../data', channels=["G", "N", "E"])
+    ann_rgb2cls('../data', replace=False)
 
     # split train/val/test and save
+    ann_split('../data/cls_ann', '../split/ann', replace=True)
+    img_split('../data', '../split', img_conf_name, replace=True)
