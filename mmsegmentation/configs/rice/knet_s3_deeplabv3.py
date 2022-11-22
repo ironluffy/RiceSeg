@@ -1,6 +1,6 @@
 _base_ = [
     '../_base_/datasets/rice.py', '../_base_/default_runtime.py',
-    '../_base_/schedules/schedule_5k_knet.py'
+    '../_base_/schedules/schedule_3k_knet.py'
 ]
 
 # model settings
@@ -90,4 +90,4 @@ lr_config = dict(
     step=[60000, 72000],
     by_epoch=False)
 # In K-Net implementation we use batch size 2 per GPU as default
-data = dict(samples_per_gpu=2, workers_per_gpu=2)
+data = dict(samples_per_gpu=4, workers_per_gpu=4)
