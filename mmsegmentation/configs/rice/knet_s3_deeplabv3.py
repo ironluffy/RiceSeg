@@ -1,10 +1,10 @@
 _base_ = [
-    '../_base_/datasets/ade20k.py', '../_base_/default_runtime.py',
-    '../_base_/schedules/schedule_80k.py'
+    '../_base_/datasets/rice.py', '../_base_/default_runtime.py',
+    '../_base_/schedules/schedule_5k_knet.py'
 ]
 
 # model settings
-norm_cfg = dict(type='SyncBN', requires_grad=True)
+norm_cfg = dict(type='BN', requires_grad=True)
 num_stages = 3
 conv_kernel_size = 1
 model = dict(
@@ -23,11 +23,10 @@ model = dict(
     decode_head=dict(
         type='IterativeDecodeHead',
         num_stages=num_stages,
-        num_classes=5
         kernel_update_head=[
             dict(
                 type='KernelUpdateHead',
-                num_classes=150,
+                num_classes=6,
                 num_ffn_fcs=2,
                 num_heads=8,
                 num_mask_fcs=1,
@@ -55,11 +54,12 @@ model = dict(
             channels=512,
             dilations=(1, 12, 24, 36),
             dropout_ratio=0.1,
-            num_classes=150,
+            ignore_index = -100, 
+            num_classes=6,
             norm_cfg=norm_cfg,
             align_corners=False,
             loss_decode=dict(
-                type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0))),
+                type='LovaszLoss', loss_weight=1.0))),
     auxiliary_head=dict(
         type='FCNHead',
         in_channels=1024,
@@ -68,15 +68,15 @@ model = dict(
         num_convs=1,
         concat_input=False,
         dropout_ratio=0.1,
-        num_classes=150,
+        ignore_index = -100,
+        num_classes=6,
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
-            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=0.4)),
-    # model training and testing settings
+            type='LovaszLoss', loss_weight=0.4)),
+
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))
-
 # optimizer
 optimizer = dict(_delete_=True, type='AdamW', lr=0.0001, weight_decay=0.0005)
 optimizer_config = dict(grad_clip=dict(max_norm=1, norm_type=2))

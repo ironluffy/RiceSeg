@@ -54,6 +54,7 @@ def flatten_probs(probs, labels, ignore_index=None):
     valid = (labels != ignore_index)
     vprobs = probs[valid.nonzero().squeeze()]
     vlabels = labels[valid]
+    # print(labels[valid].size(), labels.size())
     return vprobs, vlabels
 
 
@@ -84,7 +85,7 @@ def lovasz_hinge_flat(logits, labels):
 def lovasz_hinge(logits,
                  labels,
                  classes='present',
-                 per_image=False,
+                 per_image=True,
                  class_weight=None,
                  reduction='mean',
                  avg_factor=None,
@@ -148,6 +149,7 @@ def lovasz_softmax_flat(probs, labels, classes='present', class_weight=None):
     C = probs.size(1)
     losses = []
     class_to_sum = list(range(C)) if classes in ['all', 'present'] else classes
+    # print(class_to_sum)
     for c in class_to_sum:
         fg = (labels == c).float()  # foreground for class c
         if (classes == 'present' and fg.sum() == 0):
@@ -166,17 +168,21 @@ def lovasz_softmax_flat(probs, labels, classes='present', class_weight=None):
         if class_weight is not None:
             loss *= class_weight[c]
         losses.append(loss)
-    return torch.stack(losses).mean()
+        # print('loss', loss)
+    if losses == []:
+        return torch.Tensor([0.0]).mean().to(probs.device)
+    else:
+        return torch.stack(losses).mean()
 
 
 def lovasz_softmax(probs,
                    labels,
                    classes='present',
-                   per_image=False,
+                   per_image=True,
                    class_weight=None,
                    reduction='mean',
                    avg_factor=None,
-                   ignore_index=255):
+                   ignore_index=-100):
     """Multi-class Lovasz-Softmax loss.
 
     Args:
@@ -214,6 +220,7 @@ def lovasz_softmax(probs,
         ]
         loss = weight_reduce_loss(
             torch.stack(loss), None, reduction, avg_factor)
+
     else:
         loss = lovasz_softmax_flat(
             *flatten_probs(probs, labels, ignore_index),
@@ -252,7 +259,7 @@ class LovaszLoss(nn.Module):
     def __init__(self,
                  loss_type='multi_class',
                  classes='present',
-                 per_image=False,
+                 per_image=True,
                  reduction='mean',
                  class_weight=None,
                  loss_weight=1.0,
@@ -296,6 +303,7 @@ class LovaszLoss(nn.Module):
         # if multi-class loss, transform logits to probs
         if self.cls_criterion == lovasz_softmax:
             cls_score = F.softmax(cls_score, dim=1)
+            
 
         loss_cls = self.loss_weight * self.cls_criterion(
             cls_score,
