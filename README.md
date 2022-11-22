@@ -2,8 +2,18 @@
 
 ## Preparation
 
-### Code - git clone
-After cloning this repo, please use the following command to initialize ```mmsegmentation``` submodule
+### Docker image
 ```bash
-git submodule update --init --recursive
+docker pull
+```
+### Code - git clone
+```bash
+git clone https://github.com/ironluffy/RiceSeg.git
+```
+## Data processing
+
+### Data directory structure
+
+```
+
 ```
