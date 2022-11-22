@@ -100,10 +100,10 @@ def rearrange_unzipped(dir_path, data_path):
 def ann_rgb2cls(data_path, replace=False):
     print("Converting annotation images to class images...")
     nocls = np.array([0, 0, 0])
-    cls1 = np.array([26, 0, 255])   #도복
-    cls2 = np.array([204, 0, 250])  #결주
-    cls3 = np.array([245, 39, 8])   #정상
-    cls4 = np.array([245, 299, 0])  #도열병
+    cls1 = np.array([245, 39, 8])   #정상
+    cls2 = np.array([245, 299, 0])  #도열병
+    cls3 = np.array([26, 0, 255])   #도복
+    cls4 = np.array([204, 0, 250])  #결주
     cls5 = np.array([0, 123, 245])  #부진
     class_list = [nocls, cls1, cls2, cls3, cls4, cls5]
     dx = [0, 0, -1, 1, -1, -1, 1, 1]

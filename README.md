@@ -4,7 +4,7 @@
 
 ### Docker image
 ```bash
-docker pull
+docker pull ironluffy/rice:initial
 ```
 ### Code - git clone
 ```bash
