@@ -1,4 +1,4 @@
-_base_ = 'knets3_upernet_swin-t.py'
+_base_ = 'knet_s3_upernet_swin-t.py'
 
 checkpoint_file = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/swin/swin_large_patch4_window7_224_22k_20220308-d5bdebaf.pth'  # noqa
 # model settings

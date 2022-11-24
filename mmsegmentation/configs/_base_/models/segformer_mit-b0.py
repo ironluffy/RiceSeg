@@ -1,8 +1,8 @@
-# model settings
+checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/segformer/mit_b0_20220624-7e0fe6dd.pth'  # noqa
 norm_cfg = dict(type='SyncBN', requires_grad=True)
 model = dict(
     type='EncoderDecoder',
-    pretrained=None,
+    pretrained=checkpoint,
     backbone=dict(
         type='MixVisionTransformer',
         in_channels=3,

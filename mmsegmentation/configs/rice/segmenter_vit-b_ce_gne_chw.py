@@ -1,8 +1,9 @@
 _base_ = [
-    '../_base_/models/segmenter_vit-b16_lovasz.py',
+    '../_base_/models/segmenter_vit-b16_mask.py',
     '../_base_/datasets/rice_gne_chw.py', '../_base_/default_runtime.py',
     '../_base_/schedules/schedule_5k_segmenter.py'
 ]
+
 optimizer = dict(lr=0.001, weight_decay=0.0)
 
 data = dict(samples_per_gpu=2, workers_per_gpu=2)

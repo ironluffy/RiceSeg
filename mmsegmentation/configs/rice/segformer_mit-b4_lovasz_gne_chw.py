@@ -1,13 +1,17 @@
 _base_ = [
-    '../_base_/models/segformer_mit-b0.py', '../_base_/datasets/ade20k.py',
-    '../_base_/default_runtime.py', '../_base_/schedules/schedule_160k.py'
+    '../_base_/models/segformer_mit-b4.py', '../_base_/datasets/rice_gne_chw.py',
+    '../_base_/default_runtime.py', '../_base_/schedules/schedule_5k_segformer.py'
 ]
 
-checkpoint = 'https://download.openmmlab.com/mmsegmentation/v0.5/pretrain/segformer/mit_b0_20220624-7e0fe6dd.pth'  # noqa
+model = dict(
+    decode_head=dict(
+        loss_decode=dict(
+            type='LovaszLoss', loss_weight=1.0)
+    )
+)
 
-model = dict(pretrained=checkpoint, decode_head=dict(num_classes=150))
+data = dict(samples_per_gpu=2, workers_per_gpu=2)
 
-# optimizer
 optimizer = dict(
     _delete_=True,
     type='AdamW',
@@ -30,5 +34,3 @@ lr_config = dict(
     power=1.0,
     min_lr=0.0,
     by_epoch=False)
-
-data = dict(samples_per_gpu=2, workers_per_gpu=2)
