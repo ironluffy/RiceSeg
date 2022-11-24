@@ -1,7 +1,7 @@
 # /JH/jihye/mmsegmentation/configs/a_my_configs/segformer_mit-b0_512x512_3k_Rice_Sample_lovasz.py
 
 _base_ = [
-    '../_base_/models/segformer_mit-b0-Rice_Sample_lovasz.py', '../_base_/datasets/rice.py',
+    '../_base_/models/segformer_mit-b0-_lovasz.py', '../_base_/datasets/rice_gne_chw.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_5k_segformer.py'
 ]
 

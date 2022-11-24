@@ -1,5 +1,3 @@
-# /JH/jihye/mmsegmentation/configs/_base_/models/segformer_mit-b0-Rice_Sample_dice.py
-
 # model settings
 norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(
@@ -30,7 +28,7 @@ model = dict(
         norm_cfg=norm_cfg,
         align_corners=False,
         loss_decode=dict(
-            type='DiceLoss', use_sigmoid=False, loss_weight=1.0)),
+            type='FocalLoss', use_sigmoid=True, loss_weight=1.0)),
     # model training and testing settings
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))

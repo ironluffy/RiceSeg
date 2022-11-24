@@ -1,5 +1,3 @@
-# /JH/jihye/mmsegmentation/configs/_base_/models/segformer_mit-b0-Rice_Sample_crossentropy.py
-
 # model settings
 norm_cfg = dict(type='BN', requires_grad=True)
 model = dict(
