@@ -1,6 +1,7 @@
 # Outputs
 work_dirs
 pretrained_ckpt/*.pth
+test_out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

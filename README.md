@@ -1,6 +1,6 @@
 # Rice growth abnormality recognition - Semantic Segmentation
 
-## Preparation
+## Preparation (Pre-requisites)
 
 ### Docker image
 ```bash
@@ -64,22 +64,18 @@ python3 src/data_preprocess.py  --skip_unzip
     data_root= '/rice/data'
     ...
     ```
-- download pre-trained checkpoints in `pretrained_ckpt`
-  - [segmenter](https://download.openmmlab.com/mmsegmentation/v0.5/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k/segmenter_vit-b_mask_8x1_512x512_160k_ade20k_20220105_151706-bc533b08.pth)
-  - [segformer](https://download.openmmlab.com/mmsegmentation/v0.5/segformer/segformer_mit-b0_512x512_160k_ade20k/segformer_mit-b0_512x512_160k_ade20k_20220617_162207-c00b9603.pth)
-
 ### Training Demo
 
 #### KNet
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_deeplabv3.py
+python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py
 ```
 
 #### Segmenter
-```
- python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_vit-b_mask.py
+```bash
+python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_vit-b_mask.py
 ```     
 #### Segformer
 ```bash
-python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/_mit-b0.py
+python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py.py
 ```
