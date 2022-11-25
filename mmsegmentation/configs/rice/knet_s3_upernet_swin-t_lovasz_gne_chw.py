@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/models/knet_s3_upernet_swin-l.py',
+    '../_base_/models/knet_s3_upernet_swin-t.py',
     '../_base_/datasets/rice_gne_chw.py', '../_base_/rice_runtime.py',
     '../_base_/schedules/schedule_knet_upernet.py'
 ]

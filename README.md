@@ -54,7 +54,7 @@ python3 src/data_preprocess.py
 python3 src/data_preprocess.py  --skip_unzip
 ```
 ---
-## Training
+## Train
 
 ### Check-list
 - `data_root` should be the path of the data directory.  
@@ -80,7 +80,12 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py.py
 ```
 
+### Customize training pipeline
+Please refer to the files in `mmsegmentation/configs/rice` and add a new configuration file you want to use.
+You can use several pre-defined models in `mmsegmentation/configs/_base_/models` and you can add a new model in there.
+Also, you can change the configuration of dataset as well, in `mmsegmentation/configs/_base_/datasets`. The default dataset is `rice_gne_chw.py` in `mmsegmentation/configs/_base_/datasets`.
 
+---
 ## Test
 ```bash
 python3 ./mmsegmentation/tools/train.py .{config file path} {checkpoint_path} --eval mIoU 

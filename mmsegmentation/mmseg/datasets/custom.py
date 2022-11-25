@@ -308,7 +308,7 @@ class CustomDataset(Dataset):
                     # should be `dict()`, see
                     # https://github.com/open-mmlab/mmsegmentation/issues/1415
                     # for more ditails
-                    label_map=dict(),
+                    label_map=self.label_map,
                     reduce_zero_label=self.reduce_zero_label))
 
         return pre_eval_results
@@ -426,7 +426,7 @@ class CustomDataset(Dataset):
                 num_classes,
                 self.ignore_index,
                 metric,
-                label_map=dict(),
+                label_map=self.label_map,
                 reduce_zero_label=self.reduce_zero_label)
         # test a list of pre_eval_results
         else:
