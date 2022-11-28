@@ -90,7 +90,7 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 ```     
 #### Segformer
 ```bash
-python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py.py
+python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py
 ```
 
 ### Customize training pipeline
