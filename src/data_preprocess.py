@@ -13,10 +13,17 @@ from multiprocessing import Process
 
 
 def unzip_files(src_dir, dst_dir):
-    for file in tqdm.tqdm(os.listdir(src_dir)):
+    def unzip_file(file):
+        with zipfile.ZipFile(file, 'r') as zip_ref:
+            zip_ref.extractall(dst_dir)
+    proc_list = []
+    for file in os.listdir(src_dir):
         if file[-3:] == "zip":
-            with zipfile.ZipFile(os.path.join(src_dir, file), "r") as zip_ref:
-                zip_ref.extractall(dst_dir)
+            proc_list.append(Process(target=unzip_file, args=(os.path.join(src_dir, file),)))
+    for proc in proc_list:
+        proc.start()
+    for proc in proc_list:
+        proc.join()
 
 
 def move_files(code_names, channel, img_dir, org_dir):
@@ -213,7 +220,7 @@ def img_compose(data_path: str, channels=["E", "N", "G"], mode='chw_minmax', rep
         for file in tqdm.tqdm(sorted(os.listdir(os.path.join(img_dir, channels[0])))):
             img = []
             for ch_id, channel in enumerate(channels):
-                org_cur_chn = np.array(
+                cur_chn = np.array(
                     Image.open(os.path.join(img_dir, channel, file))
                 )
                 img.append(cur_chn)
