@@ -112,7 +112,7 @@ Please refer to the fiels in `mmsegmentation/configs/_base_/rice_runtime.py` whi
 ```bash
 python3 ./mmsegmentation/tools/test.py .{config file path} {checkpoint_path} --eval mIoU 
 ```
-Optionally, if you want to save inference results, please add `--save-dir {output path}` to the command.
+Optionally, if you want to save inference results, please add `--show-dir {output path}` to the command.
 
 
 ### Examples (normal vs. dobok vs. doyeol vs. gyeolju vs. bujin)
@@ -150,7 +150,7 @@ python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b
 ```
 
 ### Specific configurations (e.g., normal vs. bujin)
-Please refer to the directory `mmsegmentation/configs/_base_/{class_name}`.
+Please refer to the directory `mmsegmentation/configs/{class_name}`.
 For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint)
 And you should report mean accuracy (mAcc.) for the model performance
 ```bash
