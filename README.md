@@ -154,5 +154,5 @@ Please refer to the directory `mmsegmentation/configs/_base_/{class_name}`.
 For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint)
 And you should report mean accuracy (mAcc.) for the model performance
 ```bash
-python3 mmsegmentation/configs/gyeolju/segformer_mit-b4.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
+python3  mmsegmentation/tools/test.py mmsegmentation/configs/gyeolju/segformer_mit-b4.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
 ```
