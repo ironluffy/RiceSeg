@@ -110,7 +110,7 @@ Please refer to the fiels in `mmsegmentation/configs/_base_/rice_runtime.py` whi
 ---
 ## Test
 ```bash
-python3 ./mmsegmentation/tools/train.py .{config file path} {checkpoint_path} --eval mIoU 
+python3 ./mmsegmentation/tools/test.py .{config file path} {checkpoint_path} --eval mIoU 
 ```
 Optionally, if you want to save inference results, please add `--save-dir {output path}` to the command.
 
@@ -119,34 +119,34 @@ Optionally, if you want to save inference results, please add `--save-dir {outpu
 #### KNet
 After training step finished,
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./work_dirs/knet_s3_upernet_swin-l_lovasz_gne_chw/latest.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./work_dirs/knet_s3_upernet_swin-l_lovasz_gne_chw/latest.pth --eval mIoU
 ```
 
 or using provided best checkpoint (tentative)
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./best_ckpt/knet.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./best_ckpt/knet.pth --eval mIoU
 ```
 
 #### Segmenter
 After training step finished,
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./work_dirs/segmenter_vit-b_mask/latest.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./work_dirs/segmenter_vit-b_mask/latest.pth --eval mIoU
 ```
 
 or using provided best checkpoint (tentative)
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./best_ckpt/segmenter.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./best_ckpt/segmenter.pth --eval mIoU
 ```
 
 #### Segformer
 After training step finished,
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
 ```
 
 or using provided best checkpoint (tentative)
 ```bash
-python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./best_ckpt/segformer.pth --eval mIoU
+python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./best_ckpt/segformer.pth --eval mIoU
 ```
 
 ### Specific configurations (e.g., normal vs. bujin)
