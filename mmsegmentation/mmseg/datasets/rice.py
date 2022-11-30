@@ -18,7 +18,7 @@ class RiceDataset(CustomDataset):
     The ``img_suffix`` is fixed to '.jpg' and ``seg_map_suffix`` is fixed to
     '.png'.
     """
-    CLASSES = ('background','nomal', 'doyeol', 'dobok', 'gyulju', 'bujin')
+    CLASSES = ('background','normal', 'doyeol', 'dobok', 'gyulju', 'bujin')
     PALETTE = [[0,0,0], [8, 39, 245], [0, 229, 245], [225, 0, 26], [250, 0, 204], [245, 123, 0]]
     
     def __init__(self, **kwargs):
