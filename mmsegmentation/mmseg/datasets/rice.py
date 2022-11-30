@@ -13,10 +13,9 @@ from .custom import CustomDataset
 class RiceDataset(CustomDataset):
     """Rice dataset.
 
-    In segmentation map annotation for ADE20K, 0 stands for background, which
-    is not included in 150 categories. ``reduce_zero_label`` is fixed to True.
-    The ``img_suffix`` is fixed to '.jpg' and ``seg_map_suffix`` is fixed to
-    '.png'.
+    In segmentation map annotation for Rice dataset, 0 stands for background, which
+    is included in 5 categories. ``reduce_zero_label`` is fixed to False.
+    The ``img_suffix`` is fixed to '.png' and ``seg_map_suffix`` is fixed to '.png'.
     """
     CLASSES = ('background','normal', 'doyeol', 'dobok', 'gyulju', 'bujin')
     PALETTE = [[0,0,0], [8, 39, 245], [0, 229, 245], [225, 0, 26], [250, 0, 204], [245, 123, 0]]
@@ -59,9 +58,9 @@ class RiceDataset(CustomDataset):
 
             png_filename = osp.join(imgfile_prefix, f'{basename}.png')
 
-            # The  index range of official requirement is from 0 to 150.
-            # But the index range of output is from 0 to 149.
-            # That is because we set reduce_zero_label=True.
+            # The  index range of official requirement is from 0 to 5.
+            # But the index range of output is from 0 to 5.
+            # That is because we set reduce_zero_label=False.
             result = result + 1
 
             output = Image.fromarray(result.astype(np.uint8))
@@ -75,7 +74,7 @@ class RiceDataset(CustomDataset):
                        imgfile_prefix,
                        to_label_id=True,
                        indices=None):
-        """Format the results into dir (standard format for ade20k evaluation).
+        """Format the results into dir (standard format for Rice dataset evaluation).
 
         Args:
             results (list): Testing results of the dataset.
