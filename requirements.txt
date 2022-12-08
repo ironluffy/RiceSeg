@@ -12,7 +12,7 @@ beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/wor
 black==22.10.0
 bleach==5.0.1
 brotlipy==0.7.0
-certifi==2020.12.5
+certifi==2022.12.7
 cffi @ file:///tmp/build/80754af9/cffi_1605538068321/work
 chardet @ file:///tmp/build/80754af9/chardet_1605303185383/work
 click==8.1.3
