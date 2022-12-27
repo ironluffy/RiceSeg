@@ -100,6 +100,7 @@ def rearrange_unzipped(dir_path, data_path, replace=False):
         )
 
     # Sanity check
+    print("Sanity check... (img_dir, anno_dir)")
     ann_file_list = sorted(os.listdir(anno_dir))
     ann_file_names = []
     for ann_file in ann_file_list:
@@ -109,9 +110,12 @@ def rearrange_unzipped(dir_path, data_path, replace=False):
         img_file_list = sorted(os.listdir(os.path.join(img_dir, channel)))
         img_file_names = []
         for img_file in img_file_list:
+            if img_file[:-4] not in ann_file_names:
+                os.remove(os.path.join(img_dir, channel, img_file))
+                continue
             img_file_names.append(img_file[:-4])
 
-        assert set(ann_file_names) - set(img_file_names) == set()
+        assert ann_file_names == img_file_names
         # ic(code_list)
     print("Sanity check is done!")
 
@@ -134,6 +138,7 @@ def img_compose(
     Returns:
         str: img_conf_name
     """
+    print("Composing images...")
     assert len(channels) == 3
     img_dir = os.path.join(data_path, "img")
     img_conf_name = "".join(channels) + "_" + mode
@@ -250,6 +255,7 @@ def code2cls(obj_cls_code):
     return cls 
 
 def json2clsmask(json_dir, output_dir, replace=False):
+    print("Converting json to clsmask...")
     if not replace:
         if os.path.exists(output_dir):
             print(f"using existing clsmask_dir: {os.path.abspath(output_dir)}")
@@ -272,6 +278,8 @@ def json2clsmask(json_dir, output_dir, replace=False):
             coords = np.stack([x, y], axis=0).transpose()
             cv2.fillPoly(mask, [coords], cls)
         cv2.imwrite(os.path.join(output_dir, file[:-10]+file[-9:-4] + "png"), mask)
+    
+    print("Converting json to clsmask is done!")
             
 
 
