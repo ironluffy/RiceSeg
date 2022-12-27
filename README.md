@@ -22,6 +22,10 @@ git clone https://github.com/ironluffy/RiceSeg.git
 │   ├── a01_2.zip
 │   ├── a10_2.zip
 │   └── ...
+├── label
+│   ├── R2022720A18B0723.json
+│   ├── R2022720A18B0724.json
+│   └── ...
 ├── RiceSeg
 │   ├── README.md
 │   ├── src
@@ -36,20 +40,17 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ```bash
 .
 ├── rice_unzipped
-│   ├── org (origianl images)
-│   │   ├── R20220720A18B
-│   │   ├── R20220720A18E
-│   │   ├── R20220720A18G
-│   │   ├── R20220720A18N
-│   │   ├── R20220720A18R
-│   │   └── ...
-│   └── png (PNG)
-│   │   ├── R20220720A18B
-│   │   ├── R20220720A18E
-│   │   ├── R20220720A18G
-│   │   ├── R20220720A18N
-│   │   ├── R20220720A18R
-│   │   └── ...
+│   └── org (origianl images)
+│       ├── R20220720A18B
+│       ├── R20220720A18E
+│       ├── R20220720A18G
+│       ├── R20220720A18N
+│       ├── R20220720A18R
+│       └── ...
+├── label
+│   ├── R2022720A18B0723.json
+│   ├── R2022720A18B0724.json
+│   └── ...
 ├── RiceSeg
 │   └── ...
 ...

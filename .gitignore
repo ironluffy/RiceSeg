@@ -2,6 +2,7 @@
 work_dirs
 pretrained_ckpt/*.pth
 test_out
+testbench.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
