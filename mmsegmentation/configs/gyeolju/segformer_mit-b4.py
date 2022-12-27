@@ -3,4 +3,4 @@ _base_ = [
     '../_base_/rice_runtime.py',
 ]
 
-data = dict(test=dict(classes=('background', 'nomal','gyulju')))
+data = dict(test=dict(classes=('background', 'normal','gyulju')))
