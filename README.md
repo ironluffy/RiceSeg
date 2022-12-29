@@ -1,4 +1,5 @@
 # Rice growth abnormality recognition - Semantic Segmentation
+![그림1](https://user-images.githubusercontent.com/85090866/209904316-59a3c914-b647-49be-a233-55c6840f126b.png)
 
 ## Preparation (Pre-requisites)
 
