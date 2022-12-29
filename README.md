@@ -124,7 +124,7 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 ```     
 
 
-### 맞춤형 훈련 파이프라인(Customize training pipeline)
+## 맞춤형 훈련 파이프라인(Customize training pipeline)
 
 ### 훈련 구성(Training configurations)
 
