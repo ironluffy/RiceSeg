@@ -133,7 +133,7 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 ###### * Please refer to the files in `mmsegmentation/configs/rice` and add a new configuration file you want to use. You can use several pre-defined models in `mmsegmentation/configs/_base_/models` and you can add a new model in there. Also, you can change the configuration of dataset as well, in `mmsegmentation/configs/_base_/datasets`. The default dataset is `rice_gne_chw.py` in `mmsegmentation/configs/_base_/datasets`.
 
 #### 사용자가 모델의 모델 학습 반복횟수(iterations)를 늘리거나 줄이려는 경우 훈련을 위한 기본 런타임 구성인 `mmsegmentation/configs/_base_/rice_runtime.py`를 참조하십시요.
-* If you want to increase/decrease the nubmer of iterations. Please refer to the fiels in `mmsegmentation/configs/_base_/rice_runtime.py` which is the the basic run-time configuration for tranining.
+###### * If you want to increase/decrease the nubmer of iterations. Please refer to the fiels in `mmsegmentation/configs/_base_/rice_runtime.py` which is the the basic run-time configuration for tranining.
 
 #### Tips.
 - If you want to your multiple GPUs, your `./mmsegmentation/tools/dist_train.sh` instead of `./mmsegmentation/tools/train.py`. (Try it if the performance is lower than you think)
