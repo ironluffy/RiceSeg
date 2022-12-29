@@ -148,7 +148,7 @@ python3 ./mmsegmentation/tools/test.py .{config file path} {checkpoint_path} --e
 ###### * Optionally, if you want to save inference results, please add `--show-dir {output path}` to the command.
 
 
-### 예시(Examples) (정상 vs. 도복 vs. 도열 vs. 결주 vs. 부진)
+### 예시(Examples) (정상 vs. 도복 vs. 도열 vs. 결주 vs. 생육부진)
 #### KNet
 ###### 훈련이 종료된 후 (After training step finished)
 ```bash
@@ -181,10 +181,13 @@ python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./best_ckpt/segformer.pth --eval mIoU
 ```
 
-### Specific configurations (e.g., normal vs. bujin)
+### 단일 비교(Specific configurations) (e.g., 정상 vs. 생육부진)
+`mmsegmentation/configs/{class_name}` 를 참조하시길 바랍니다.
+예를 들어 `정상 vs. 결주`로 모델을 테스트하고 싶다면 다음 명령어를 사용하세요(특정모델의 체크포인트 선택가능)
+모델의 성능에 대한 평균정확도를 확인하세요.
 Please refer to the directory `mmsegmentation/configs/{class_name}`.
-For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint)
-And you should report mean accuracy (mAcc.) for the model performance
+For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint) And you should report mean accuracy (mAcc.) for the model performance
+
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/gyeolju/segformer_mit-b4.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
 ```
