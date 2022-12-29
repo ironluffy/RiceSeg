@@ -1,3 +1,4 @@
+# 2022년 인공지능 학습용 데이터 구축 벼 생육이상 - Semantic Segmentation
 # Rice growth abnormality recognition - Semantic Segmentation
 
 ## Preparation (Pre-requisites)
