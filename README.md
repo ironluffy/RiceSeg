@@ -98,7 +98,7 @@ python3 src/data_preprocess.py  --skip_unzip
 
 ### 확인사항 (Check-list)
  
-`mmsegmentation/configs/_base_/datasets/rice.py`의 `data_root`는 데이터 폴더의 경로여야 합니다. 
+- `mmsegmentation/configs/_base_/datasets/rice.py`의 `data_root`는 데이터 폴더의 경로여야 합니다. 
     ```python
     dataset_type = 'RiceDataset'
     data_root= '../data'
