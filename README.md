@@ -80,14 +80,16 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ...
 ```
 ---
-## Data processing
+## 데이터 전처리(Data processing)
 
-### Case 1 (in Project directory structure)
+### Case 1 : 위의 Case 1번은 아래의 전처리 파일을 실행하세요.
+### * For Case 1 above, run the preprocessing file below.
 ```bash
 python3 src/data_preprocess.py
 ```
 
-### Case 2 (in Project directory structure)
+### Case 2 : 위의 Case 2번은 아래의 전처리 파일을 실행하세요.
+### * For Case 2 above, run the preprocessing file below.
 ```bash
 python3 src/data_preprocess.py  --skip_unzip
 ```
