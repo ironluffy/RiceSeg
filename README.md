@@ -5,17 +5,17 @@
 
 ## Preparation (Pre-requisites)
 
-### Docker image
+### 도커이미지(Docker image)
 Note: nvidia-docker2 is required. (maybe already installed)
 ```bash
 docker pull ironluffy/rice:initial
 ```
-### Code - git clone
+### 깃 허브 복제(Code - git clone)
 ```bash
 git clone https://github.com/ironluffy/RiceSeg.git
 ```
 
-### Project directory structure
+### 파일 구조 (Project directory structure)
 
 #### Case 1: Before running the code, please make sure the directory structure is as follows:
 
