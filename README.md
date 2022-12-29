@@ -1,7 +1,7 @@
 # AI 학습용 데이터 구축사업 (1차) 
 ![그림1](https://user-images.githubusercontent.com/85090866/209904316-59a3c914-b647-49be-a233-55c6840f126b.png)
 
-## 벼 생육이상 인식 데이터 - Semantic Segmentation
+## 벼 생육이상 인식 데이터 의미론적 분할(Rice growth abnormality recognition - Semantic Segmentation)
 
 ## Preparation (Pre-requisites)
 
