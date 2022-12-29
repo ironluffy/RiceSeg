@@ -150,33 +150,33 @@ python3 ./mmsegmentation/tools/test.py .{config file path} {checkpoint_path} --e
 
 ### 예시(Examples) (정상 vs. 도복 vs. 도열 vs. 결주 vs. 부진)
 #### KNet
-훈련이 종료된 후 (After training step finished)
+###### 훈련이 종료된 후 (After training step finished)
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./work_dirs/knet_s3_upernet_swin-l_lovasz_gne_chw/latest.pth --eval mIoU
 ```
 
-또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
+###### 또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py ./best_ckpt/knet.pth --eval mIoU
 ```
 
 #### Segmenter
-훈련이 종료된 후 (After training step finished)
+###### 훈련이 종료된 후 (After training step finished)
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./work_dirs/segmenter_vit-b_mask/latest.pth --eval mIoU
 ```
-또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
+###### 또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py ./best_ckpt/segmenter.pth --eval mIoU
 ```
 
 #### Segformer
-훈련이 종료된 후 (After training step finished)
+###### 훈련이 종료된 후 (After training step finished)
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
 ```
 
-또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
+###### 또는 모델의 체크포인트가 제공될 때 (using provided best checkpoint [tentative])
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py ./best_ckpt/segformer.pth --eval mIoU
 ```
