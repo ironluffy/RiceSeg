@@ -17,6 +17,7 @@ git clone https://github.com/ironluffy/RiceSeg.git
 
 ### 파일 구조 (Project directory structure)
 
+#### Case 1: 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
 #### Case 1: Before running the code, please make sure the directory structure is as follows:
 
 ```bash
