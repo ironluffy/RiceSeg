@@ -128,13 +128,13 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 
 #### 훈련 구성(Training configurations)
 
-사용자는 `mmsegmentation/configs/rice` 폴더에 파일을 참조하고 구성파일을 추가할 수 있습니다.
-사용자는 `mmsegmentation/configs/_base_/models` 폴더에 미리 정의된 여러개의 모델을 사용할 수 있으며 새로운 모델을 추가할 수 있습니다.
-사용자는 `mmsegmentation/configs/_base_/datasets`에서 데이터 세트의 구성을 변경할 수 있으며 기본데이터 세트는`mmsegmentation/configs/_base_/datasets`의 `rice_gne_chw.py`입니다.
+- 사용자는 `mmsegmentation/configs/rice` 폴더에 파일을 참조하고 구성파일을 추가할 수 있습니다.
+- 사용자는 `mmsegmentation/configs/_base_/models` 폴더에 미리 정의된 여러개의 모델을 사용할 수 있으며 새로운 모델을 추가할 수 있습니다.
+- 사용자는 `mmsegmentation/configs/_base_/datasets`에서 데이터 세트의 구성을 변경할 수 있으며 기본데이터 세트는`mmsegmentation/configs/_base_/datasets`의 `rice_gne_chw.py`입니다.
 
-* Please refer to the files in `mmsegmentation/configs/rice` and add a new configuration file you want to use.
-You can use several pre-defined models in `mmsegmentation/configs/_base_/models` and you can add a new model in there.
-Also, you can change the configuration of dataset as well, in `mmsegmentation/configs/_base_/datasets`. The default dataset is `rice_gne_chw.py` in `mmsegmentation/configs/_base_/datasets`.
+- Please refer to the files in `mmsegmentation/configs/rice` and add a new configuration file you want to use.
+- You can use several pre-defined models in `mmsegmentation/configs/_base_/models` and you can add a new model in there.
+- Also, you can change the configuration of dataset as well, in `mmsegmentation/configs/_base_/datasets`. The default dataset is `rice_gne_chw.py` in `mmsegmentation/configs/_base_/datasets`.
 
 #### If you want to increase/decrease the nubmer of iterations.
 Please refer to the fiels in `mmsegmentation/configs/_base_/rice_runtime.py` which is the the basic run-time configuration for tranining.
