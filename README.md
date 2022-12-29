@@ -105,7 +105,7 @@ python3 src/data_preprocess.py  --skip_unzip
     ...
     ```
     
-* `data_root` should be the path of the data directory.  
+- * `data_root` should be the path of the data directory.  
     In the `mmsegmentation/configs/_base_/datasets/rice.py`
     ```python
     dataset_type = 'RiceDataset'
