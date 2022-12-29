@@ -21,6 +21,26 @@ git clone https://github.com/ironluffy/RiceSeg.git
 
 ```bash
 .
+├── 원천데이터
+│   ├── R20220726A25B1036.tif
+│   ├── R20220726A25B1037.tif
+│   └── ...
+├── 라벨링데이터
+│   ├── R20220726A25B1036.json
+│   ├── R20220726A25B1037.json
+│   └── ...
+├── RiceSeg
+│   ├── README.md
+│   ├── src
+│   ├── mmsegmentation
+│   ├── pretrained_ckpt
+│   └── .gitignore
+└── index.html
+```
+
+
+```bash
+.
 ├── rice_raw_data
 │   ├── a01_2.zip
 │   ├── a10_2.zip
