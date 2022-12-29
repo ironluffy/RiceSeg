@@ -58,8 +58,8 @@ git clone https://github.com/ironluffy/RiceSeg.git
 │   └── .gitignore
 └── index.html
 ```
-
-#### Case 2: In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
+#### Case 2: 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
+#### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
 
 ```bash
 .
