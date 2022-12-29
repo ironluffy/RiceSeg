@@ -5,12 +5,12 @@
 
 ## Preparation (Pre-requisites)
 
-### 도커이미지(Docker image)
+### 도커 이미지 복제 (Docker image)
 Note: nvidia-docker2 is required. (maybe already installed)
 ```bash
 docker pull ironluffy/rice:initial
 ```
-### 깃 허브 복제(Code - git clone)
+### 깃 허브 복제 (Code - git clone)
 ```bash
 git clone https://github.com/ironluffy/RiceSeg.git
 ```
@@ -80,7 +80,7 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ...
 ```
 ---
-## 데이터 전처리(Data processing)
+## 데이터 전처리 (Data processing)
 
 ### Case 1 : 위의 Case 1번은 아래의 전처리 파일을 실행하세요.
 ##### * For Case 1 above, run the preprocessing file below.
@@ -94,7 +94,7 @@ python3 src/data_preprocess.py
 python3 src/data_preprocess.py  --skip_unzip
 ```
 ---
-## 훈련(Train)
+## 훈련 (Train)
 
 ### 확인사항 (Check-list)
   
@@ -105,7 +105,7 @@ python3 src/data_preprocess.py  --skip_unzip
     ...
     ```
     
-### 훈련 데모(Training Demo)
+### 훈련 데모 (Training Demo)
 ##### 본 과제에서의 최종모델은 Segformer 입니다. Knet, Segmenter 모델은 성능비교를 위해 제공합니다.
 
 #### Segformer
@@ -124,9 +124,9 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 ```     
 
 
-## 맞춤형 훈련 파이프라인(Customize training pipeline)
+## 맞춤형 훈련 파이프라인 (Customize training pipeline)
 
-### 훈련 구성(Training configurations)
+### 훈련 구성 (Training configurations)
 
 ##### 사용자는 `mmsegmentation/configs/rice` 폴더에 파일을 참조하고 구성파일을 추가할 수 있습니다. `mmsegmentation/configs/_base_/models` 폴더에 미리 정의된 여러개의 모델을 사용할 수 있으며 새로운 모델을 추가할 수 있습니다.`mmsegmentation/configs/_base_/datasets`에서 데이터 세트의 구성을 변경할 수 있으며 기본데이터 세트는`mmsegmentation/configs/_base_/datasets`의 `rice_gne_chw.py`입니다.
 
@@ -140,11 +140,12 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 
 
 ---
-## Test
+## 테스트(TEST)
 ```bash
 python3 ./mmsegmentation/tools/test.py .{config file path} {checkpoint_path} --eval mIoU 
 ```
-Optionally, if you want to save inference results, please add `--show-dir {output path}` to the command.
+#### 테스트 결과를 저장하려면 명령어에 `--show-dir {출력 경로}`를 추가하십시오.
+###### * Optionally, if you want to save inference results, please add `--show-dir {output path}` to the command.
 
 
 ### Examples (normal vs. dobok vs. doyeol vs. gyeolju vs. bujin)
