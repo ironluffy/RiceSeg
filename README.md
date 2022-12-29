@@ -126,7 +126,7 @@ python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_
 
 ### 맞춤형 훈련 파이프라인(Customize training pipeline)
 
-#### 훈련 구성(Training configurations)
+### 훈련 구성(Training configurations)
 
 ##### 사용자는 `mmsegmentation/configs/rice` 폴더에 파일을 참조하고 구성파일을 추가할 수 있습니다. `mmsegmentation/configs/_base_/models` 폴더에 미리 정의된 여러개의 모델을 사용할 수 있으며 새로운 모델을 추가할 수 있습니다.`mmsegmentation/configs/_base_/datasets`에서 데이터 세트의 구성을 변경할 수 있으며 기본데이터 세트는`mmsegmentation/configs/_base_/datasets`의 `rice_gne_chw.py`입니다.
 
