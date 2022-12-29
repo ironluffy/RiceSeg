@@ -105,9 +105,15 @@ python3 src/data_preprocess.py  --skip_unzip
     ...
     ```
     
-### Training Demo
+### 훈련 데모(Training Demo)
+##### 본 과제에서의 최종모델은 Segformer 입니다. Knet, Segmenter 모델은 성능비교를 위해 제공합니다.
 
-#### KNet
+#### Segformer
+```bash
+python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py
+```
+
+#### KNet 
 ```bash
 python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py
 ```
@@ -116,10 +122,7 @@ python3 mmsegmentation/tools/train.py mmsegmentation/configs/rice/knet_s3_uperne
 ```bash
 python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segmenter_vit-b_mask.py
 ```     
-#### Segformer
-```bash
-python3 ./mmsegmentation/tools/train.py ./mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py
-```
+
 
 ### Customize training pipeline
 
