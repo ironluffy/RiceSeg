@@ -18,7 +18,7 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ### 파일 구조 (Project directory structure)
 
 #### Case 1: 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
-#### * Before running the code, please make sure the directory structure is as follows:
+##### * Before running the code, please make sure the directory structure is as follows:
 
 ```bash
 .
@@ -59,7 +59,7 @@ git clone https://github.com/ironluffy/RiceSeg.git
 └── index.html
 ```
 #### Case 2: 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
-#### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
+##### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
 
 ```bash
 .
@@ -83,13 +83,13 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ## 데이터 전처리(Data processing)
 
 ### Case 1 : 위의 Case 1번은 아래의 전처리 파일을 실행하세요.
-### * For Case 1 above, run the preprocessing file below.
+##### * For Case 1 above, run the preprocessing file below.
 ```bash
 python3 src/data_preprocess.py
 ```
 
 ### Case 2 : 위의 Case 2번은 아래의 전처리 파일을 실행하세요.
-### * For Case 2 above, run the preprocessing file below.
+##### * For Case 2 above, run the preprocessing file below.
 ```bash
 python3 src/data_preprocess.py  --skip_unzip
 ```
