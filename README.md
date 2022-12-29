@@ -2,6 +2,7 @@
 ![그림1](https://user-images.githubusercontent.com/85090866/209904316-59a3c914-b647-49be-a233-55c6840f126b.png)
 
 ## 벼 생육이상 인식 데이터 의미론적 분할(Semantic Segmentation)
+![그림2](https://user-images.githubusercontent.com/85090866/209904898-989dfd14-0dc3-4528-8c6a-02de89ff8447.png)
 
 ## Preparation (Pre-requisites)
 
