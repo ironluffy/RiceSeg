@@ -185,8 +185,7 @@ python3 mmsegmentation/tools/test.py mmsegmentation/configs/rice/segformer_mit-b
 `mmsegmentation/configs/{class_name}` 를 참조하시길 바랍니다.
 예를 들어 `정상 vs. 결주`로 모델을 테스트하고 싶다면 다음 명령어를 사용하세요(특정모델의 체크포인트 선택가능)
 모델의 성능에 대한 평균정확도를 확인하세요.
-###### * Please refer to the directory `mmsegmentation/configs/{class_name}`.
-For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint) And you should report mean accuracy (mAcc.) for the model performance
+###### * Please refer to the directory `mmsegmentation/configs/{class_name}`. For example, if you want to test the model with the configuration of `normal vs. gyeolju`, please use the following command. (you can choose specific model checkpoint) And you should report mean accuracy (mAcc.) for the model performance
 
 ```bash
 python3 mmsegmentation/tools/test.py mmsegmentation/configs/gyeolju/segformer_mit-b4.py ./work_dirs/segformer_mit-b4_lovasz_gne_chw/latest.pth --eval mIoU
