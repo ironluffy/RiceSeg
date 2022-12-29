@@ -21,12 +21,12 @@ git clone https://github.com/ironluffy/RiceSeg.git
 ##### * Before running the code, please make sure the directory structure is as follows:
 
 ```bash
-.
+Dataset
 ├── 원천데이터
 │   ├── R20220726A25B1036.tif
 │   ├── R20220726A25B1037.tif
 │   └── ...
-├── 라벨링데이터
+│   ├── 라벨링데이터
 │   ├── R20220726A25B1036.json
 │   ├── R20220726A25B1037.json
 │   └── ...
