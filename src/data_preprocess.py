@@ -12,43 +12,19 @@ from PIL import Image
 from icecream import ic
 from multiprocessing import Process
 
-
-def unzip_files(src_dir, dst_dir):
-    def unzip_file(file):
-        try:
-            with zipfile.ZipFile(file, "r") as zip_ref:
-                zip_ref.extractall(dst_dir)
-        except:
-            print(f"Error in {file}")
-
-    proc_list = []
-    for file in os.listdir(src_dir):
-        if file[-3:] == "zip":
-            proc_list.append(
-                Process(target=unzip_file, args=(os.path.join(src_dir, file),))
+def move_files(file_list, img_dir, org_dir):
+    for file in tqdm.tqdm(file_list):
+        channel = file[-9]
+        if file[-3:] == "tif":
+            shutil.copy(
+                os.path.join(org_dir, file),
+                os.path.join(img_dir, channel, file[:-9] + file[-8:]),
             )
-    for proc in proc_list:
-        proc.start()
-    for proc in proc_list:
-        proc.join()
 
 
-def move_files(code_names, channel, img_dir, org_dir):
-    for code_name in tqdm.tqdm(code_names):
-        cur_dir = code_name + channel
-        dst_dir = os.path.join(img_dir, channel)
-        for file in os.listdir(os.path.join(org_dir, cur_dir)):
-            if file[-3:] == "tif":
-                shutil.copy(
-                    os.path.join(org_dir, cur_dir, file),
-                    os.path.join(dst_dir, file[:12] + file[13:]),
-                )
-
-
-def rearrange_unzipped(dir_path, data_path, replace=False):
-    print("rearranging unzipped files...")
+def rearrange_files(dir_path, data_path, replace=False):
+    print("rearranging files...")
     channels = ["R", "G", "B", "N", "E"]
-    org_dir = os.path.join(dir_path, "org")
 
 
     img_dir = os.path.join(data_path, "img")
@@ -63,41 +39,31 @@ def rearrange_unzipped(dir_path, data_path, replace=False):
             os.makedirs(os.path.join(img_dir, channel), exist_ok=True)
         os.makedirs(anno_dir, exist_ok=True)
 
-        code_dict = {}
-        for channel in channels:
-            code_dict[channel] = []
-        for cur_dir in os.listdir(org_dir):
-            code_name, channel = cur_dir[:-1], cur_dir[-1:]
-            code_dict[channel].append(code_name)
+        all_files = os.listdir(dir_path)
+        num_files = len(all_files)
+        step = int(num_files/15)
 
-        for channel in channels:
-            assert sorted(code_dict[channel]) == sorted(code_dict["R"])
-
-        proc_list = []
-        for channel in channels:
-            proc_list.append(
-                Process(
-                    target=move_files,
-                    args=(code_dict[channel], channel, img_dir, org_dir),
+        for file in tqdm.tqdm(all_files):
+            channel = file[-9]
+            if file[-3:] == "tif":
+                shutil.copy(
+                    os.path.join(dir_path, file),
+                    os.path.join(img_dir, channel, file[:-9] + file[-8:]),
                 )
-            )
 
-        for proc in proc_list:
-            proc.start()
-        for proc in proc_list:
-            proc.join()
-
-        # for file in os.listdir(os.path.join(img_dir, "R")):
-        #     shutil.copy(
-        #         os.path.join(
-        #             png_dir, file[:12] + "R", file[:12] + "R" + file[12:-3] + "png"
-        #         ),
-        #         os.path.join(anno_dir, file[:-3] + "png"),
+        # proc_list = []
+        # for i in range(0,16,step):
+        #     proc_list.append(
+        #         Process(
+        #             target=move_files,
+        #             args=(all_files[i*step:(i+1)*step], img_dir, dir_path),
+        #         )
         #     )
-        print("Re-arrangement done")
-        print(
-            f"img_dir: {os.path.abspath(img_dir)}, anno_dir: {os.path.abspath(anno_dir)}"
-        )
+
+        # for proc in proc_list:
+        #     proc.start()
+        # for proc in proc_list:
+        #     proc.join()
 
     # Sanity check
     print("Sanity check... (img_dir, anno_dir)")
@@ -192,6 +158,7 @@ def img_compose(
 
 
 def ann_split(ann_dir, output_dir, split_ratio=[0.8, 0.1, 0.1], replace=False):
+    random.seed(10)
     if not replace:
         if os.path.exists(output_dir):
             print(f"using existing splited ann_dir: {os.path.abspath(output_dir)}")
@@ -286,8 +253,7 @@ def json2clsmask(json_dir, output_dir, replace=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="Rice data processing", description="What the program does")
-    parser.add_argument("--src", type=str, default="../rice_raw_data")
-    parser.add_argument("--dst", type=str, default="../rice_unzipped")
+    parser.add_argument("--src", type=str, default="/giai/nia_final")
     parser.add_argument("--skip_unzip", action="store_true")
     args = parser.parse_args()
 
@@ -295,29 +261,14 @@ if __name__ == "__main__":
         lambda x: shutil.rmtree(x),
         glob.glob(os.path.join("../data", ".ipynb_checkpoints"), recursive=True),
     )
-    # unzip
-    if not args.skip_unzip:
-        if not os.path.exists(os.path.join(args.dst)):
-            os.makedirs(args.dst)
-            unzip_files(src_dir=args.src, dst_dir=args.dst)
-            # UTF-8 encoding problem: Korean letters is not properly encoded
-            os.rename(
-                os.path.join(args.dst, sorted(os.listdir(args.dst))[1]),
-                os.path.join(args.dst, "org"),
-            )
-            print(f"unzip done: {args.dst}")
-        else:
-            print(f"using existing unzipped files: {os.path.abspath(args.dst)}")
-    else:
-        print("skip unzip")
 
-    json2clsmask("../json_labels", "../data/cls_ann", replace=False)
+    json2clsmask(os.path.join(args.src, "2.라벨링데이터"), "../data/cls_ann", replace=False)
 
     # rearrange_unzipped
-    rearrange_unzipped(args.dst, "../data", replace=False)
+    rearrange_files(os.path.join(args.src, "1.원천데이터"), "../data", replace=False)
 
     # compose images
-    img_conf_name = img_compose("../data", channels=["R", "N", "E"])
+    img_conf_name = img_compose("../data", channels=["G", "N", "E"])
 
     # json file to mask
 
