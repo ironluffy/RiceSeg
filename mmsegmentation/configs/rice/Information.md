@@ -10,7 +10,6 @@
 
 오픈소스인 [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation) 도구를 활용하여 해당 Task에 적합한 모델을 선정하고, 실험을 거쳐 최종 후보를 선택하였습니다. 모델 후보는 K-net, SegFormer, Segmenter 3종으로 선택되었고, 수집된 데이터로 성능 실험을 진행하여 SegFormer이 최종 모델로 선정되었습니다. 또한, 모델의 기본 설정인 Cross-entropy loss와 더불어 Multi-class data에 더 효과적인 Lovasz loss를 활용하였습니다. 
 
-
 ## 1. SegFormer
 
 [SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers](https://arxiv.org/abs/2105.15203)
@@ -35,6 +34,15 @@ We present SegFormer, a simple, efficient yet powerful semantic segmentation fra
 <img src="https://user-images.githubusercontent.com/24582831/142902600-e188073e-5744-4ba9-8dbf-9316e55c74aa.png" width="70%"/>
 </div>
 
+```bibtex
+@article{xie2021segformer,
+  title={SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
+  author={Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M and Luo, Ping},
+  journal={arXiv preprint arXiv:2105.15203},
+  year={2021}
+}
+```
+
 ### Results and models
 
 #### 벼 생육이상 인식 데이터
@@ -50,8 +58,6 @@ Evaluation :
 | --------- | -------- | --------- | ------: | ----: | ------------- |
 | Segformer | MIT-B0   | 512x512   |  160000 | 38.55 | 39.03         |
 | Segformer | MIT-B4   | 512x512   |  160000 | 50.23 | 51.10         |
-
-
 
 ## 2. K-Net
 
@@ -97,7 +103,6 @@ Semantic, instance, and panoptic segmentations have been addressed using differe
 | KNet + UPerNet   | Swin-T   | 512x512   | 80000   | Lovasz        | 7.57     | 15.56          | 45.84 | 46.27         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py)  |
 | KNet + UPerNet   | Swin-L   | 512x512   | 80000   | Lovasz        | 13.5     | 8.29           | 52.05 | 53.24         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-t_lovasz_gne_chw.py)  |
 
-
 ## 2. Segmenter
 
 [Segmenter: Transformer for Semantic Segmentation](https://arxiv.org/abs/2105.05633)
@@ -140,7 +145,6 @@ Image segmentation is often ambiguous at the level of individual image patches a
 | Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 13.20          | 49.60 | 51.07         | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
 | Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 13.20          | 49.60 | 51.07         | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
 
-
 ## 라이센스 
 
 MMSegmentation is released under the Apache 2.0 license, while some specific features in this library are with other licenses.
@@ -152,4 +156,3 @@ In this file, we list the features with other licenses instead of Apache 2.0. Us
 |  Feature  |                                                                        Files                                                                        |                            License                            |
 | :-------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------: |
 | SegFormer | [mmseg/models/decode_heads/segformer_head.py](https://github.com/open-mmlab/mmsegmentation/blob/master/mmseg/models/decode_heads/segformer_head.py) | [NVIDIA License](https://github.com/NVlabs/SegFormer#license) |
-
