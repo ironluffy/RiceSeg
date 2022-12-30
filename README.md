@@ -87,6 +87,8 @@ pip install -v -e .
 ...
 ```
 ---
+###### 하위 과정 부터는 모두 RiceSeg 폴더에서 진행
+
 ## 데이터 전처리 (Data processing)
 
 ### Case 1 : 위의 Case 1번은 아래의 전처리 파일을 실행하세요.
