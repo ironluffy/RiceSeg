@@ -23,7 +23,7 @@ pip install -v -e .
 
 ### 파일 구조 (Project directory structure)
 
-#### Case 1: 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
+#### Case 1(압축 된 상태): 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
 ##### * Before running the code, please make sure the directory structure is as follows:
 
 ```bash
@@ -46,48 +46,6 @@ pip install -v -e .
 └── index.html
 ```
 
-
-```bash
-.
-├── rice_raw_data
-│   ├── a01_2.zip
-│   ├── a10_2.zip
-│   └── ...
-├── label
-│   ├── R2022720A18B0723.json
-│   ├── R2022720A18B0724.json
-│   └── ...
-├── RiceSeg
-│   ├── README.md
-│   ├── src
-│   ├── mmsegmentation
-│   ├── pretrained_ckpt
-│   └── .gitignore
-└── index.html
-```
-#### Case 2: 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
-##### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
-
-```bash
-.
-├── rice_unzipped
-│   └── org (origianl images)
-│       ├── R20220720A18B
-│       ├── R20220720A18E
-│       ├── R20220720A18G
-│       ├── R20220720A18N
-│       ├── R20220720A18R
-│       └── ...
-├── label
-│   ├── R2022720A18B0723.json
-│   ├── R2022720A18B0724.json
-│   └── ...
-├── RiceSeg
-│   └── ...
-...
-```
----
-
 #### ![image](https://user-images.githubusercontent.com/85090866/210024180-c1415002-19c9-4373-8e68-b2917a402372.png) 하위 모든 과정 RiceSeg 폴더에서 진행 
 ## 데이터 전처리 (Data processing)
 
@@ -97,12 +55,6 @@ pip install -v -e .
 python3 src/data_preprocess.py
 ```
 
-### Case 2 : 위의 Case 2번은 아래의 전처리 파일을 실행하세요.
-##### * For Case 2 above, run the preprocessing file below.
-```bash
-python3 src/data_preprocess.py  --skip_unzip
-```
----
 ## 훈련 (Train)
 
 ### 확인사항 (Check-list)
