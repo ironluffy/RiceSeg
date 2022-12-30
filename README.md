@@ -88,8 +88,7 @@ pip install -v -e .
 ```
 ---
 
-##### ![image](https://user-images.githubusercontent.com/85090866/210024106-d5af6f8a-dda3-40da-ab90-70b4a80c67a7.png)
-g 폴더에서 진행 ![image](https://user-images.githubusercontent.com/85090866/210024106-d5af6f8a-dda3-40da-ab90-70b4a80c67a7.png)
+##### ![image](https://user-images.githubusercontent.com/85090866/210024106-d5af6f8a-dda3-40da-ab90-70b4a80c67a7.png) 하위 과정 RiceSeg 폴더에서 진행 ![image](https://user-images.githubusercontent.com/85090866/210024106-d5af6f8a-dda3-40da-ab90-70b4a80c67a7.png)
 
 ## 데이터 전처리 (Data processing)
 
