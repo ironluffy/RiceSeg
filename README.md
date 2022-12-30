@@ -23,17 +23,17 @@ pip install -v -e .
 
 ### 파일 구조 (Project directory structure)
 
-#### Case 1: 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
+#### Case 1(압축 된 상태): 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
 ##### * Before running the code, please make sure the directory structure is as follows:
 
 ```bash
 .
-├── Dataset
-│   ├── 1.원천데이터
+├── Dataset.zip
+│   ├── 1.원천데이터.zip
 │   │   ├── R20220726A25B1036.tif
 │   │   ├── R20220726A25B1037.tif
 │   │   └── ...
-│   ├── 2.라벨링데이터
+│   ├── 2.라벨링데이터.zip
 │   │   ├── R20220726A25B1036.json
 │   │   ├── R20220726A25B1037.json
 │   │   └── ...
@@ -65,7 +65,7 @@ pip install -v -e .
 │   └── .gitignore
 └── index.html
 ```
-#### Case 2: 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
+#### Case 2(압축되지 않은 상태): 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
 ##### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
 
 ```bash
