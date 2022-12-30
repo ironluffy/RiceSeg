@@ -12,6 +12,7 @@ from PIL import Image
 from icecream import ic
 from multiprocessing import Process
 
+
 def move_files(file_list, img_dir, org_dir):
     for file in tqdm.tqdm(file_list):
         channel = file[-9]
@@ -25,7 +26,6 @@ def move_files(file_list, img_dir, org_dir):
 def rearrange_files(dir_path, data_path, replace=False):
     print("rearranging files...")
     channels = ["R", "G", "B", "N", "E"]
-
 
     img_dir = os.path.join(data_path, "img")
     anno_dir = os.path.join(data_path, "cls_ann")
@@ -41,7 +41,7 @@ def rearrange_files(dir_path, data_path, replace=False):
 
         all_files = os.listdir(dir_path)
         num_files = len(all_files)
-        step = int(num_files/15)
+        step = int(num_files / 15)
 
         for file in tqdm.tqdm(all_files):
             channel = file[-9]
@@ -86,7 +86,6 @@ def rearrange_files(dir_path, data_path, replace=False):
     print("Sanity check is done!")
 
 
-
 def img_compose(
     data_path: str, channels=["E", "N", "G"], mode="chw_minmax", replace=False
 ) -> str:
@@ -121,13 +120,16 @@ def img_compose(
         # Channel-wise minmax normalization
         for file in tqdm.tqdm(sorted(os.listdir(os.path.join(img_dir, channels[0])))):
             img = []
-            for ch_id, channel in enumerate(channels):
-                cur_chn = np.array(Image.open(os.path.join(img_dir, channel, file)))
-                cur_chn[cur_chn < 0] = cur_chn[cur_chn != -10000].min()
-                cur_chn = (cur_chn - cur_chn.min()) / cur_chn.ptp()
-                img.append(cur_chn)
-            img = np.stack(img, axis=2)
-            cv2.imwrite(os.path.join(output_dir, file[:-3] + "png"), img * 255)
+            try:
+                for ch_id, channel in enumerate(channels):
+                    cur_chn = np.array(Image.open(os.path.join(img_dir, channel, file)))
+                    cur_chn[cur_chn < 0] = cur_chn[cur_chn != -10000].min()
+                    cur_chn = (cur_chn - cur_chn.min()) / cur_chn.ptp()
+                    img.append(cur_chn)
+                img = np.stack(img, axis=2)
+                cv2.imwrite(os.path.join(output_dir, file[:-3] + "png"), img * 255)
+            except:
+                os.remove(os.path.join(data_path, "cls_ann", file[:-3] + "png"))
     elif mode == "minmax":
         # minmax normalization
         for file in tqdm.tqdm(sorted(os.listdir(os.path.join(img_dir, channels[0])))):
@@ -207,19 +209,20 @@ def img_split(data_dir, split_dir, img_conf_name, replace=False):
 
 
 def code2cls(obj_cls_code):
-    if obj_cls_code == '01':
+    if obj_cls_code == "01":
         cls = 1
-    elif obj_cls_code == '02':
+    elif obj_cls_code == "02":
         cls = 2
-    elif obj_cls_code == '03':
+    elif obj_cls_code == "03":
         cls = 3
-    elif obj_cls_code == '04':
+    elif obj_cls_code == "04":
         cls = 4
-    elif obj_cls_code == '05':
+    elif obj_cls_code == "05":
         cls = 5
     else:
         cls = 0
-    return cls 
+    return cls
+
 
 def json2clsmask(json_dir, output_dir, replace=False):
     print("Converting json to clsmask...")
@@ -231,28 +234,30 @@ def json2clsmask(json_dir, output_dir, replace=False):
     all_files = os.listdir(json_dir)
     R_files = []
     for file in all_files:
-        if file[-10]=='R':
+        if file[-10] == "R":
             R_files.append(file)
 
     for file in tqdm.tqdm(R_files):
         with open(os.path.join(json_dir, file), "r") as f:
             data = json.load(f)
-        mask = np.zeros(data['IMAGES']['PHOTO_FILE_MG'], dtype=np.uint8)
-        objs = sorted(data['ANNOTATIONS'], key=lambda x: code2cls(x['OBJECT_CLASS_CODE']))
+        mask = np.zeros(data["IMAGES"]["PHOTO_FILE_MG"], dtype=np.uint8)
+        objs = sorted(
+            data["ANNOTATIONS"], key=lambda x: code2cls(x["OBJECT_CLASS_CODE"])
+        )
         for obj in objs:
-            cls = code2cls(obj['OBJECT_CLASS_CODE'])
-            x, y = obj['PYN_XCRDNT'], obj['PYN_YCRDNT']
+            cls = code2cls(obj["OBJECT_CLASS_CODE"])
+            x, y = obj["PYN_XCRDNT"], obj["PYN_YCRDNT"]
             coords = np.stack([x, y], axis=0).transpose()
             cv2.fillPoly(mask, [coords], cls)
-        cv2.imwrite(os.path.join(output_dir, file[:-10]+file[-9:-4] + "png"), mask)
-    
+        cv2.imwrite(os.path.join(output_dir, file[:-10] + file[-9:-4] + "png"), mask)
+
     print("Converting json to clsmask is done!")
-            
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        prog="Rice data processing", description="What the program does")
+        prog="Rice data processing", description="What the program does"
+    )
     parser.add_argument("--src", type=str, default="/giai/nia_final")
     parser.add_argument("--skip_unzip", action="store_true")
     args = parser.parse_args()
@@ -276,5 +281,3 @@ if __name__ == "__main__":
     # split annotation first and then split images along with the annotation
     ann_split("../data/cls_ann", "../split/ann", replace=True)
     img_split("../data", "../split", img_conf_name, replace=True)
-
-
