@@ -140,10 +140,10 @@ Image segmentation is often ambiguous at the level of individual image patches a
 
 #### 벼 생육이상 인식 데이터
 
-| Method           | Backbone | Crop Size | Lr schd | Loss Funcion | Mem (GB) | Inf time (fps) | mAcc  | config                                                                                                                                 |
-| ---------------- | -------- | --------- | ------- | -------------| -------- | -------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 00.00          | 00.00 | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
-| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 00.00          | 00.00 | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
+| Method           | Backbone | Crop Size | Lr schd | Loss Funcion | Mem (GB) | Inf time (fps) | mAcc  | config                                                                                               |
+| ---------------- | -------- | --------- | ------- | -------------| -------- | -------------- | ----- | ---------------------------------------------------------------------------------------------------- |
+| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Cross-entropy| 4.20     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segmenter_vit-b_ce_gne_chw.py)       |
+| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segmenter_vit-b_lovasz_gne_chw.py)   |
 
 ## 라이센스 
 
