@@ -29,11 +29,11 @@ pip install -v -e .
 ```bash
 .
 ├── Dataset
-│   ├── 1.원천데이터.zip
+│   ├── 1.원천데이터
 │   │   ├── R20220726A25B1036.tif
 │   │   ├── R20220726A25B1037.tif
 │   │   └── ...
-│   ├── 2.라벨링데이터.zip
+│   ├── 2.라벨링데이터
 │   │   ├── R20220726A25B1036.json
 │   │   ├── R20220726A25B1037.json
 │   │   └── ...
@@ -46,29 +46,6 @@ pip install -v -e .
 └── index.html
 ```
 
-#### Case 2(압축되지 않은 상태): 압축되지 않은 전체데이터 세트를 다운로드 하는경우 데이터세트의 압축을 풀고 rice_unzopped 폴더에 넣으십시오.
-##### * In case of downloading full dataset (not zipped), please unzip the dataset and put it in the `rice_unzipped` folder.
-
-```bash
-.
-├── rice_unzipped
-│   └── org (origianl images)
-│       ├── R20220720A18B
-│       ├── R20220720A18E
-│       ├── R20220720A18G
-│       ├── R20220720A18N
-│       ├── R20220720A18R
-│       └── ...
-├── label
-│   ├── R2022720A18B0723.json
-│   ├── R2022720A18B0724.json
-│   └── ...
-├── RiceSeg
-│   └── ...
-...
-```
----
-
 #### ![image](https://user-images.githubusercontent.com/85090866/210024180-c1415002-19c9-4373-8e68-b2917a402372.png) 하위 모든 과정 RiceSeg 폴더에서 진행 
 ## 데이터 전처리 (Data processing)
 
@@ -78,12 +55,6 @@ pip install -v -e .
 python3 src/data_preprocess.py
 ```
 
-### Case 2 : 위의 Case 2번은 아래의 전처리 파일을 실행하세요.
-##### * For Case 2 above, run the preprocessing file below.
-```bash
-python3 src/data_preprocess.py  --skip_unzip
-```
----
 ## 훈련 (Train)
 
 ### 확인사항 (Check-list)
