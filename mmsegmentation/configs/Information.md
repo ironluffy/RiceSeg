@@ -10,7 +10,7 @@
 
 오픈소스인 [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation) 도구를 활용하여 해당 Task에 적합한 모델을 선정하고, 실험을 거쳐 최종 후보를 선택하였습니다. 모델 후보는 K-net, SegFormer, Segmenter 3종으로 선택되었고, 수집된 데이터로 성능 실험을 진행하여 SegFormer이 최종 모델로 선정되었습니다. 또한, 모델의 기본 설정인 Cross-entropy loss와 더불어 Multi-class data에 더 효과적인 Lovasz loss를 활용하였습니다. 
 
-## 1. SegFormer
+## 1. (메인모델) SegFormer
 
 [SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers](https://arxiv.org/abs/2105.15203)
 
