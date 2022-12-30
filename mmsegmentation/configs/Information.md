@@ -103,7 +103,7 @@ Semantic, instance, and panoptic segmentations have been addressed using differe
 | KNet + UPerNet   | Swin-T   | 512x512   | 00000   | Lovasz        | 7.57     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py)  |
 | KNet + UPerNet   | Swin-L   | 512x512   | 00000   | Lovasz        | 13.5     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-t_lovasz_gne_chw.py)  |
 
-## 2. Segmenter
+## 3. Segmenter
 
 [Segmenter: Transformer for Semantic Segmentation](https://arxiv.org/abs/2105.05633)
 
