@@ -15,6 +15,12 @@ docker pull ironluffy/rice:initial
 git clone https://github.com/ironluffy/RiceSeg.git
 ```
 
+### MMSegmentation 설치 (Install MMSegmentation)
+```bash
+cd RiceSeg/mmsegmentation
+pip install -v -e .
+```
+
 ### 파일 구조 (Project directory structure)
 
 #### Case 1: 코드를 실행하기 전에 파일 구조가 다음과 같은지 확인하십시오:
