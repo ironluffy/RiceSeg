@@ -88,7 +88,7 @@ pip install -v -e .
 ```
 ---
 * * *
-## 하위 과정 모두 RiceSeg 폴더에서 진행
+### ![pngtree-vector-down-arrow-icon-png-image_998281](https://user-images.githubusercontent.com/85090866/210023994-69a417de-fafe-4a5c-95da-8b9f2f924d1e.jpg) 하위 과정 모두 RiceSeg 폴더에서 진행
 * * *
 ## 데이터 전처리 (Data processing)
 
