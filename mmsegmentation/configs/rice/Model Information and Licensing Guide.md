@@ -4,9 +4,9 @@
 
 <!-- [ABSTRACT] -->
 
-(모델 개발 목표) 벼의 생육 과정에서 일어나는 생육 이상을 분류하는 모델을 개발
+(모델 개발 목표) 벼의 생육 과정에서 일어나는 생육 이상을 분할하는 모델을 개발
 
-(개발 내용) 벼 생육 시기 별로 촬영된 5개 채널(R, G, B, NIR, Red-Edge)의  분광이미지를 기반으로 벼의 생육 이상(도열병, 도복, 결주, 생육부진)을 분류하는 모델을 개발
+(개발 내용) 벼 생육 시기 별로 촬영된 5개 채널(R, G, B, NIR, Red-Edge)의  분광이미지를 기반으로 벼의 생육 이상(도열병, 도복, 결주, 생육부진)을 분할하는 모델을 개발
 
 오픈소스인 mmsegmentaion 도구를 활용하여 해당 Task에 적합한 모델을 선정하고, 실험을 거쳐 최종 후보를 선택하였습니다. 모델 후보는 K-net, SegFormer, Segmenter 3종으로 선택되었고, 수집된 데이터로 성능 실험을 진행하여 SegFormer이 최종 모델로 선정되었습니다. 또한, 모델의 기본 설정인 Cross-entropy loss와 더불어 Multi-class data에 더 효과적인 Lovasz loss를 활용하였습니다. 
 
@@ -35,29 +35,6 @@ We present SegFormer, a simple, efficient yet powerful semantic segmentation fra
 <img src="https://user-images.githubusercontent.com/24582831/142902600-e188073e-5744-4ba9-8dbf-9316e55c74aa.png" width="70%"/>
 </div>
 
-### Citation
-
-```bibtex
-@article{xie2021segformer,
-  title={SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers},
-  author={Xie, Enze and Wang, Wenhai and Yu, Zhiding and Anandkumar, Anima and Alvarez, Jose M and Luo, Ping},
-  journal={arXiv preprint arXiv:2105.15203},
-  year={2021}
-}
-```
-
-### Usage
-
-We have provided pretrained models converted from [SegFormer](https://github.com/NVlabs/SegFormer).
-
-If you want to convert keys on your own, we also provide a script [`mit2mmseg.py`](../../tools/model_converters/mit2mmseg.py) in the tools directory to convert the key of models from [the official repo](https://github.com/NVlabs/SegFormer) to MMSegmentation style.
-
-```shell
-python tools/model_converters/mit2mmseg.py ${PRETRAIN_PATH} ${STORE_PATH}
-```
-
-This script convert model from `PRETRAIN_PATH` and store the converted model in `STORE_PATH`.
-
 ### Results and models
 
 #### 벼 생육이상 인식 데이터
@@ -67,7 +44,7 @@ This script convert model from `PRETRAIN_PATH` and store the converted model in 
 | Segformer | MIT-B0   | 512x512   |  160000 | Cross-entropy |      2.1 | 38.17          | 37.85 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b0_ce_gne_chw.py)     |
 | Segformer | MIT-B4   | 512x512   |  160000 | Lovasz        |      6.1 | 14.54          | 49.09 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py) |
 
-Evaluation with `AlignedResize`:
+Evaluation :
 
 | Method    | Backbone | Crop Size | Lr schd |  mIoU | mIoU(ms+flip) |
 | --------- | -------- | --------- | ------: | ----: | ------------- |
@@ -154,35 +131,7 @@ Image segmentation is often ambiguous at the level of individual image patches a
   year={2021}
 }
 ```
-
-### Usage
-
-We have provided pretrained models converted from [ViT-AugReg](https://github.com/rwightman/pytorch-image-models/blob/f55c22bebf9d8afc449d317a723231ef72e0d662/timm/models/vision_transformer.py#L54-L106).
-
-If you want to convert keys on your own to use the pre-trained ViT model from [Segmenter](https://github.com/rstrudel/segmenter), we also provide a script [`vitjax2mmseg.py`](../../tools/model_converters/vitjax2mmseg.py) in the tools directory to convert the key of models from [ViT-AugReg](https://github.com/rwightman/pytorch-image-models/blob/f55c22bebf9d8afc449d317a723231ef72e0d662/timm/models/vision_transformer.py#L54-L106) to MMSegmentation style.
-
-```shell
-python tools/model_converters/vitjax2mmseg.py ${PRETRAIN_PATH} ${STORE_PATH}
-```
-
-E.g.
-
-```shell
-python tools/model_converters/vitjax2mmseg.py \
-Ti_16-i21k-300ep-lr_0.001-aug_none-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_384.npz \
-pretrain/vit_tiny_p16_384.pth
-```
-
-This script convert model from `PRETRAIN_PATH` and store the converted model in `STORE_PATH`.
-
-In our default setting, pretrained models and their corresponding [ViT-AugReg](https://github.com/rwightman/pytorch-image-models/blob/f55c22bebf9d8afc449d317a723231ef72e0d662/timm/models/vision_transformer.py#L54-L106) models could be defined below:
-
-| pretrained models     | original models                                                                                                                                                                   |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| vit_tiny_p16_384.pth  | ['vit_tiny_patch16_384'](https://storage.googleapis.com/vit_models/augreg/Ti_16-i21k-300ep-lr_0.001-aug_none-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_384.npz)   |
-| vit_small_p16_384.pth | ['vit_small_patch16_384'](https://storage.googleapis.com/vit_models/augreg/S_16-i21k-300ep-lr_0.001-aug_light1-wd_0.03-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.03-res_384.npz) |
-| vit_base_p16_384.pth  | ['vit_base_patch16_384'](https://storage.googleapis.com/vit_models/augreg/B_16-i21k-300ep-lr_0.001-aug_medium1-wd_0.1-do_0.0-sd_0.0--imagenet2012-steps_20k-lr_0.01-res_384.npz)  |
-| vit_large_p16_384.pth | ['vit_large_patch16_384'](https://storage.googleapis.com/vit_models/augreg/L_16-i21k-300epodels
+### Results and models
 
 #### 벼 생육이상 인식 데이터
 
