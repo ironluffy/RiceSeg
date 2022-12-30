@@ -1,6 +1,6 @@
 import os
 import csv
-import time
+import datetime
 import tqdm
 import torch
 import pickle
@@ -36,6 +36,7 @@ if __name__ == "__main__":
         writer = csv.writer(f)
         writer.writerow(["image", "label", "mAcc", "Time stamp"])
         for i in tqdm.trange(len(img_files)):
-            mid_dat = data[i][0] / data[i][3] * 100
+            valid_ind = data[i][3] != 0
+            mid_dat = data[i][0][valid_ind] / data[i][3][valid_ind] * 100
             mAcc = torch.mean(mid_dat[1:]).item()
-            writer.writerow([img_files[i], ann_files[i], mAcc, time.time()])
+            writer.writerow([img_files[i], ann_files[i], mAcc, datetime.datetime.now()])
