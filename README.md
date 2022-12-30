@@ -88,8 +88,7 @@ pip install -v -e .
 ```
 ---
 
-#### ![image](https://user-images.githubusercontent.com/85090866/210024180-c1415002-19c9-4373-8e68-b2917a402372.png) 하위 모든 과정 RiceSeg 폴더에서 진행 ![image](https://user-images.githubusercontent.com/85090866/210024180-c1415002-19c9-4373-8e68-b2917a402372.png)
-
+#### ![image](https://user-images.githubusercontent.com/85090866/210024180-c1415002-19c9-4373-8e68-b2917a402372.png) 하위 모든 과정 RiceSeg 폴더에서 진행 
 ## 데이터 전처리 (Data processing)
 
 ### Case 1 : 위의 Case 1번은 아래의 전처리 파일을 실행하세요.
