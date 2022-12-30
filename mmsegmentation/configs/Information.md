@@ -47,17 +47,17 @@ We present SegFormer, a simple, efficient yet powerful semantic segmentation fra
 
 #### 벼 생육이상 인식 데이터
 
-| Method    | Backbone | Crop Size | Lr schd | Loss Funcion  | Mem (GB) | Inf time (fps) |  mIoU | config                                                                                              |
+| Method    | Backbone | Crop Size | Lr schd | Loss Funcion  | Mem (GB) | Inf time (fps) |  mAcc | config                                                                                              |
 | --------- | -------- | --------- | ------: | ------------- | -------: | -------------- | ----: | --------------------------------------------------------------------------------------------------- |
-| Segformer | MIT-B0   | 512x512   |  000000 | Cross-entropy |      2.1 | 38.17          | 37.85 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b0_ce_gne_chw.py)     |
-| Segformer | MIT-B4   | 512x512   |  000000 | Lovasz        |      6.1 | 14.54          | 49.09 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py) |
+| Segformer | MIT-B0   | 512x512   |  000000 | Cross-entropy |      2.1 | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b0_ce_gne_chw.py)     |
+| Segformer | MIT-B4   | 512x512   |  000000 | Lovasz        |      6.1 | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/segformer_mit-b4_lovasz_gne_chw.py) |
 
 Evaluation :
 
-| Method    | Backbone | Crop Size | Lr schd |  mIoU | mIoU(ms+flip) |
-| --------- | -------- | --------- | ------: | ----: | ------------- |
-| Segformer | MIT-B0   | 512x512   |  000000 | 38.55 | 39.03         |
-| Segformer | MIT-B4   | 512x512   |  000000 | 50.23 | 51.10         |
+| Method    | Backbone | Crop Size | Lr schd |  mAcc |
+| --------- | -------- | --------- | ------: | ----: |
+| Segformer | MIT-B0   | 512x512   |  000000 | 00.00 |
+| Segformer | MIT-B4   | 512x512   |  000000 | 00.00 |
 
 ## 2. K-Net
 
@@ -96,12 +96,12 @@ Semantic, instance, and panoptic segmentations have been addressed using differe
 
 #### 벼 생육이상 인식 데이터
 
-| Method           | Backbone | Crop Size | Lr schd | Loss Funcion  | Mem (GB) | Inf time (fps) | mIoU  | mIoU(ms+flip) | config                                                                                                     |
-| ---------------- | -------- | --------- | ------- | ------------- | -------- | -------------- | ----- | ------------- | ---------------------------------------------------------------------------------------------------------- |
-| KNet + DeepLabV3 | R-50-D8  | 512x512   | 00000   | Cross-entropy | 7.42     | 12.10          | 45.06 | 46.11         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_deeplabv3_ce_gne_chw.py)           |
-| KNet + DeepLabV3 | R-50-D8  | 512x512   | 00000   | Lovasz        | 7.42     | 12.10          | 45.06 | 46.11         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_deeplabv3_lovasz_gne_chw.py)       |
-| KNet + UPerNet   | Swin-T   | 512x512   | 00000   | Lovasz        | 7.57     | 15.56          | 45.84 | 46.27         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py)  |
-| KNet + UPerNet   | Swin-L   | 512x512   | 00000   | Lovasz        | 13.5     | 8.29           | 52.05 | 53.24         | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-t_lovasz_gne_chw.py)  |
+| Method           | Backbone | Crop Size | Lr schd | Loss Funcion  | Mem (GB) | Inf time (fps) | mAcc  | config                                                                                                     |
+| ---------------- | -------- | --------- | ------- | ------------- | -------- | -------------- | ----- | ---------------------------------------------------------------------------------------------------------- |
+| KNet + DeepLabV3 | R-50-D8  | 512x512   | 00000   | Cross-entropy | 7.42     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_deeplabv3_ce_gne_chw.py)           |
+| KNet + DeepLabV3 | R-50-D8  | 512x512   | 00000   | Lovasz        | 7.42     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_deeplabv3_lovasz_gne_chw.py)       |
+| KNet + UPerNet   | Swin-T   | 512x512   | 00000   | Lovasz        | 7.57     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-l_lovasz_gne_chw.py)  |
+| KNet + UPerNet   | Swin-L   | 512x512   | 00000   | Lovasz        | 13.5     | 00.00          | 00.00 | [config](https://github.com/RiceSeg/mmsegmentation/configs/rice/knet_s3_upernet_swin-t_lovasz_gne_chw.py)  |
 
 ## 2. Segmenter
 
@@ -140,10 +140,10 @@ Image segmentation is often ambiguous at the level of individual image patches a
 
 #### 벼 생육이상 인식 데이터
 
-| Method           | Backbone | Crop Size | Lr schd | Loss Funcion | Mem (GB) | Inf time (fps) | mIoU  | mIoU(ms+flip) | config                                                                                                                                 |
-| ---------------- | -------- | --------- | ------- | -------------| -------- | -------------- | ----- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 13.20          | 49.60 | 51.07         | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
-| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 13.20          | 49.60 | 51.07         | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
+| Method           | Backbone | Crop Size | Lr schd | Loss Funcion | Mem (GB) | Inf time (fps) | mAcc  | config                                                                                                                                 |
+| ---------------- | -------- | --------- | ------- | -------------| -------- | -------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 00.00          | 00.00 | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
+| Segmenter Mask   | ViT-B_16 | 512x512   | 000000  | Lovasz       | 4.20     | 00.00          | 00.00 | [config](https://github.com/open-mmlab/mmsegmentation/blob/master/configs/segmenter/segmenter_vit-b_mask_8x1_512x512_160k_ade20k.py)   |
 
 ## 라이센스 
 
