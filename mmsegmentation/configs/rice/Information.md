@@ -8,7 +8,7 @@
 
 (개발 내용) 벼 생육 시기 별로 촬영된 5개 채널(R, G, B, NIR, Red-Edge)의  분광이미지를 기반으로 벼의 생육 이상(도열병, 도복, 결주, 생육부진)을 분할하는 모델을 개발
 
-오픈소스인 mmsegmentaion 도구를 활용하여 해당 Task에 적합한 모델을 선정하고, 실험을 거쳐 최종 후보를 선택하였습니다. 모델 후보는 K-net, SegFormer, Segmenter 3종으로 선택되었고, 수집된 데이터로 성능 실험을 진행하여 SegFormer이 최종 모델로 선정되었습니다. 또한, 모델의 기본 설정인 Cross-entropy loss와 더불어 Multi-class data에 더 효과적인 Lovasz loss를 활용하였습니다. 
+오픈소스인 [mmsegmentaion](https://github.com/open-mmlab/mmsegmentation) 도구를 활용하여 해당 Task에 적합한 모델을 선정하고, 실험을 거쳐 최종 후보를 선택하였습니다. 모델 후보는 K-net, SegFormer, Segmenter 3종으로 선택되었고, 수집된 데이터로 성능 실험을 진행하여 SegFormer이 최종 모델로 선정되었습니다. 또한, 모델의 기본 설정인 Cross-entropy loss와 더불어 Multi-class data에 더 효과적인 Lovasz loss를 활용하였습니다. 
 
 
 ## 1. SegFormer
