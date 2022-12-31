@@ -38,5 +38,15 @@ if __name__ == "__main__":
         for i in tqdm.trange(len(img_files)):
             valid_ind = data[i][3] != 0
             mid_dat = data[i][0][valid_ind] / data[i][3][valid_ind] * 100
-            mAcc = torch.mean(mid_dat[1:]).item()
-            writer.writerow([img_files[i], ann_files[i], mAcc, datetime.datetime.now()])
+            if torch.sum(valid_ind) == 0:
+                mAcc = "N/A"
+            else:
+                mAcc = torch.mean(mid_dat[1:]).item()
+            writer.writerow(
+                [
+                    img_files[i],
+                    ann_files[i],
+                    mAcc,
+                    datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                ]
+            )
