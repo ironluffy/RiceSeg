@@ -40,7 +40,7 @@ idna @ file:///tmp/build/80754af9/idna_1593446292537/work
 importlib-metadata==5.0.0
 importlib-resources==5.10.0
 ipykernel==6.17.1
-ipython==8.6.0
+ipython==8.10.0
 ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
 isort==5.10.1
 jedi @ file:///tmp/build/80754af9/jedi_1606932564285/work
